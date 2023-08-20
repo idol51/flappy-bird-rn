@@ -12,7 +12,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
         .forEach((t) => {
             Matter.Body.setVelocity(entities.Bird.body, {
                 x: 0,
-                y: -8,
+                y: -6,
             });
 
         })
@@ -20,6 +20,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
     Matter.Engine.update(engine, time.delta);
 
     for ( let i = 1; i <= 2; i++ ) {
+
         if ( entities[`ObstacleTop${i}`].body.bounds.max.x <= 50 && !entities[`ObstacleTop${i}`].point ) {
             entities[`ObstacleTop${i}`].point = true;
             dispatch({ type: 'new_point' });
@@ -30,6 +31,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
 
             Matter.Body.setPosition(entities[`ObstacleTop${i}`].body, pipeSizePos.pipeTop.pos);
             Matter.Body.setPosition(entities[`ObstacleBottom${i}`].body, pipeSizePos.pipeBottom.pos);
+            entities[`ObstacleTop${i}`].point = false;
         }
 
         Matter.Body.translate(entities[`ObstacleTop${i}`].body, { x: -3, y: 0 })

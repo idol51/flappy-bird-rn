@@ -1,7 +1,8 @@
 import React from 'react'
 import Matter from 'matter-js'
 import { styles } from './styles';
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
+import floorImg from '../assets/floor.png'
 
 const Floor = ({ body, color }) => {
     const widthBody = body.bounds.max.x - body.bounds.min.x;
@@ -13,13 +14,17 @@ const Floor = ({ body, color }) => {
 
     return (
         <View style={{
-            backgroundColor: color,
+            // borderTopColor: 'green',
+            // borderTopWidth: 6,
+            // backgroundColor: '#fce16a',
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
             height: heightBody
-        }} />
+        }}>
+            <ImageBackground style={{ flex: 1 }} source={floorImg} resizeMode='cover'  />
+        </View>
     )
 }
 

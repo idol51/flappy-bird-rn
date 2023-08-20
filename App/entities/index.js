@@ -8,7 +8,7 @@ import { getPipeSizePosPair } from '../utils/random';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-export default (restart) => {
+export default () => {
     let engine = Matter.Engine.create({ enableSleeping: false });
 
     let world = engine.world;
@@ -21,7 +21,7 @@ export default (restart) => {
     return {
         physics: { engine, world },
         
-        Bird: Bird(world, 'green', { x: 50, y: 300 }, { height: 40, width: 40 }),
+        Bird: Bird(world, 'black', { x: 50, y: 300 }, { height: 40, width: 40 }),
         
         ObstacleTop1: Obstacle(world, 'ObstacleTop1', 'red', pipeSizePosA.pipeTop.pos, pipeSizePosA.pipeTop.size),
         ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', 'blue', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),

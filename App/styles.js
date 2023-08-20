@@ -11,6 +11,12 @@ export const styles = StyleSheet.create({
         left: 0,
         right: 0,
     },
+    highScore: {
+        position: 'absolute',
+        left: 8,
+        top: 8,
+        fontSize: 30
+    },
     points: {
         textAlign: 'center', 
         fontSize: 40, 

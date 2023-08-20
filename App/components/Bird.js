@@ -3,6 +3,7 @@ import Matter from 'matter-js'
 import { styles } from './styles';
 import { Image, View } from 'react-native';
 import beeImg from '../assets/bee.png';
+import spotImg from '../assets/spot.png';
 
 const Bird = ({ body, color }) => {
     const widthBody = body.bounds.max.x - body.bounds.min.x;
@@ -12,7 +13,7 @@ const Bird = ({ body, color }) => {
     const yBody = body.position.y - heightBody/2;
 
     return (
-        <Image source={beeImg} style={{
+        <Image source={beeImg} resizeMode='contain' style={{
             position: 'absolute',
             left: xBody,
             top: yBody,
