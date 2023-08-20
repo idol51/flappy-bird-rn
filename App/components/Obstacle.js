@@ -1,10 +1,9 @@
 import React from 'react'
 import Matter from 'matter-js'
 import { styles } from './styles';
-import { Image, View } from 'react-native';
-import beeImg from '../assets/bee.png';
+import { View } from 'react-native';
 
-const Bird = ({ body, color }) => {
+const Obstacle = ({ body, color }) => {
     const widthBody = body.bounds.max.x - body.bounds.min.x;
     const heightBody = body.bounds.max.y - body.bounds.min.y;
 
@@ -12,13 +11,19 @@ const Bird = ({ body, color }) => {
     const yBody = body.position.y - heightBody/2;
 
     return (
-        <Image source={beeImg} style={{
+        <View style={{
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
-            height: heightBody
-        }} />
+            height: heightBody,
+            justifyContent: 'space-between'
+
+        }}>
+            <View style={{ backgroundColor: color, height: 30, borderRadius: 8 }}/>
+            <View style={{ backgroundColor: color, opacity: 0.6, flex: 1, marginHorizontal: 8 }}/>
+            <View style={{ backgroundColor: color, height: 30, borderRadius: 8 }}/>
+        </View>
         // <View style={{
         //     borderWidth: 1,
         //     borderColor: color,
@@ -32,21 +37,24 @@ const Bird = ({ body, color }) => {
     )
 }
 
-export default (world, color, pos, size) => {
-    const initialBird = Matter.Bodies.rectangle(
+export default (world, label, color, pos, size) => {
+    const initialObstacle = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
         size.width,
         size.height,
-        { label: 'Bird' }
+        { 
+            label,
+            isStatic: true
+        }
     )
 
-    Matter.World.add(world, initialBird);
+    Matter.World.add(world, initialObstacle);
 
   return {
-    body: initialBird,
+    body: initialObstacle,
     color,
     pos,
-    renderer: <Bird />
+    renderer: <Obstacle />
   }
 }
